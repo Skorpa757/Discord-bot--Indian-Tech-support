@@ -1,0 +1,24 @@
+{
+    "Tags": [
+        {
+            "Names": "foo",
+            "Content": "bar",
+            "Author": 504699153172004926
+        },
+        {
+            "Names": "xy",
+            "Content": "foobar",
+            "Author": 504699153172004926
+        },
+        {
+            "Names": "odd",
+            "Content": "That's weird",
+            "Author": 504699153172004926
+        },
+        {
+            "Names": "rules",
+            "Content": "Read the rules",
+            "Author": 504699153172004926
+        }
+    ]
+}
