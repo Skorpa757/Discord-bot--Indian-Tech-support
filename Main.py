@@ -154,9 +154,6 @@ async def aliases(ctx, *aliases):
         tags = data["Tags"]
         await ctx.send("For which tag are these aliases?")
         tag = await bot.wait_for('message', timeout=60.0, check=mecheck)
-        for t in tags:
-            x = tag["author"]
-            print(x)
         
         
 
