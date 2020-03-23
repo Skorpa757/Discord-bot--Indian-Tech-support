@@ -144,19 +144,19 @@ async def create(ctx):
     await ctx.send("Done!")
 
 @tag.command()
-async def aliases(ctx, *aliases):
-
-    def mecheck(message):
-        return message.author == ctx.author
-
-    with open("tag.json", "r+") as f:
-        data = json.load(f)
+async def info(ctx, t):
+    with open("tag.json") as file:
+        data = json.load(file)
         tags = data["Tags"]
-        await ctx.send("For which tag are these aliases?")
-        tag = await bot.wait_for('message', timeout=60.0, check=mecheck)
-        
-        
-
+        for tag in tags:
+            if t in tag["Names"]:
+                content = tag["Content"]
+                author = tag["Author"]
+                names = tag["Names"]
+                creator = bot.get_user(author)
+                einfo=discord.Embed(title="", description=f"**Author:** {creator.mention}\n**Content:** {content}", timestamp=datetime.datetime.now())
+                einfo.set_author(name=f"Showing info for tag: {names}", icon_url=creator.avatar_url, url=einfo.Empty)
+                await ctx.send(embed=einfo)
 
 
 @tag.error
