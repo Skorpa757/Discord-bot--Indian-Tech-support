@@ -165,6 +165,22 @@ async def tag_error(ctx, error):
         etag=discord.Embed(title="", description="Tag commands will be displayed here...")
         await ctx.send(embed=etag)
 
+@bot.command()
+async def foo(ctx):
+    await ctx.send("SAY IT")
+    mystring = await bot.wait_for('message', timeout=200.0, check=None)
+    data = mystring.content.split("", 60)
+    data1 = data.split("\n", 120)
+    data2 = data1.split("\n", 180)
+    data3 = data2.split("\n", 240)
+    data4 = data3.split("\n", 300)
+    data5 = data4.split("\n", 360)
+    data6 = data5.split("\n", 420)
+    data7 = data6.split("\n", 480)
+    data8 = data7.split("\n", 540)
+    data9 = data7.split("\n", 600)
+    for final in data9:
+        await ctx.send(final)
 
 
 
