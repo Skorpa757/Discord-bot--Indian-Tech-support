@@ -5,6 +5,7 @@ from PIL import Image, ImageFilter, ImageFont, ImageDraw
 import asyncio
 import io
 from io import BytesIO
+import textwrap
 import requests
 
 class Fun(commands.Cog):
@@ -48,7 +49,6 @@ class Fun(commands.Cog):
         
         download = requests.get(ctx.author.avatar_url, stream=True)
         av = Image.open(io.BytesIO(download.content))
-        print('mhm')
         base = Image.open("base.jpg")
         await ctx.send("What is your company name?")
         comp = await self.bot.wait_for('message', timeout=60.0, check=check)
@@ -56,20 +56,18 @@ class Fun(commands.Cog):
         ct = await self.bot.wait_for('message', timeout=60.0, check=check)
         width, height = base.size
         width += int(width * -0.21)
-        print('mm')
-        btmfnt = ImageFont.truetype('Helvetica.ttf', 20)
+        btmfnt = ImageFont.truetype('Helvetica.ttf', 26)
         d = ImageDraw.Draw(base)
-        d.text((760, 1000), f"--------------- {ctx.author.name} - Call now! 06-1337420!---------------", font=btmfnt, fill=(107, 107, 107, 107))
-        print('Lucky')
+        d.text((650, 1000), f"--------------- {ctx.author.name} - Call now! 06-1337420!---------------", font=btmfnt, fill=(107, 107, 107, 107))
         base.paste(av, (0,0))
-        print('cbt')
         mainfnt = ImageFont.truetype('Helvetica.ttf', 69)
-        slfnt = ImageFont.truetype('Helvetica.ttf', 44)
-        d.text((210, 0), comp.content, font=mainfnt, fill=(12, 12, 12, 12))
-        d.text((215, 215), ct.content, font=slfnt, fill=(28, 28, 28, 28))
+        slfnt = ImageFont.truetype('Helvetica.ttf', 54)
+        fin = textwrap.fill(comp.content, 50)
+        d.text((210, 0), fin, font=mainfnt, fill=(12, 12, 12, 12))
+        fi = textwrap.fill(ct.content, 50)
+        d.text((215, 215), fi, font=slfnt, fill=(28, 28, 28, 28))
         base.save('Ecard.jpg')
-        print("Dayum")
-        await ctx.send("Hey", file=discord.File('Ecard.jpg'))
+        await ctx.send(f"{ctx.author.mention}, here is your card!", file=discord.File('Ecard.jpg'))
 
 
 

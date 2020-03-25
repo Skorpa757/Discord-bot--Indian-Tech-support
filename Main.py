@@ -7,6 +7,7 @@ import datetime
 import aiohttp
 from discord.ext import tasks
 import json
+import textwrap
 
 
 initial_extensions = ['cogs.member', 'cogs.moderation', 'cogs.fun']
@@ -169,18 +170,8 @@ async def tag_error(ctx, error):
 async def foo(ctx):
     await ctx.send("SAY IT")
     mystring = await bot.wait_for('message', timeout=200.0, check=None)
-    data = mystring.content.split("", 60)
-    data1 = data.split("\n", 120)
-    data2 = data1.split("\n", 180)
-    data3 = data2.split("\n", 240)
-    data4 = data3.split("\n", 300)
-    data5 = data4.split("\n", 360)
-    data6 = data5.split("\n", 420)
-    data7 = data6.split("\n", 480)
-    data8 = data7.split("\n", 540)
-    data9 = data7.split("\n", 600)
-    for final in data9:
-        await ctx.send(final)
+    fi = textwrap.fill(mystring.content, 60)
+    await ctx.send(fi)
 
 
 
