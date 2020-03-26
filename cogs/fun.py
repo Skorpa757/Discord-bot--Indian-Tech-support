@@ -41,7 +41,7 @@ class Fun(commands.Cog):
         basis.save('CoolMeme.png')
         await ctx.send("Hey", file=discord.File('CoolMeme.png'))
 
-    @commands.command()
+    @commands.command(aliases=["bcard"])
     async def ecard(self, ctx):
 
         def check(message):
